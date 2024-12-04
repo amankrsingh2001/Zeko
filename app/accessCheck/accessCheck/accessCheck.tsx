@@ -5,23 +5,29 @@ import { useRouter } from "next/navigation";
 import { BsBank2 } from "react-icons/bs";
 import { FaRegClock } from "react-icons/fa";
 
-interface ConstrainValue {
+interface VideoConstrainValue {
   video: any;
 }
 
+interface AudioConstrainValue {
+  audio:any
+}
+
 export default function AccessCheck({}) {
-  const [cameraChecked, setCameraChecked] = useState(false)
-  const [voiceChecked, setVoiceChecked] = useState(false)
+
+
+  const [cameraInput, setCameraInput] = useState(false)
+  const [audioInput, setAudioInput] = useState(false)
   const [speakerChecked, setSpeakerChecked] = useState(false)
   const [screenShareCheck, setScreenShareCheck] = useState(false)
 
-  const [cameraInput, setCameraInput] = useState(false)
+ 
 
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
 
-  async function getMedia(constraints: ConstrainValue) {
+  async function getMediaVideo(constraints: VideoConstrainValue) {
     let stream = null;
 
     try {
@@ -29,7 +35,7 @@ export default function AccessCheck({}) {
       console.log(videoRef.current)
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        setCameraChecked(true)
+
         setCameraInput(true)
       }
     } catch (err: any) {
@@ -38,8 +44,35 @@ export default function AccessCheck({}) {
   }
 
   useEffect(() => {
-    getMedia({video: { width: 1280, height: 720 },});
+    getMediaVideo({video: { width: 1280, height: 720 },});
   }, []);
+
+
+
+  async function getMediaAudio(constraints: AudioConstrainValue) {
+    let stream = null;
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({audio: constraints.audio});
+
+      const audioElement = new Audio()
+      audioElement.srcObject = stream;
+      audioElement.muted = true;
+      audioElement.play();
+      console.log(audioElement,"This is the audio element")
+      if(audioElement){
+        setAudioInput(true)
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getMediaAudio({audio: true});
+  }, []);
+
+  
 
   return (
     <div className="flex bg-transparent justify-between item-start w-[80%] ">
@@ -75,8 +108,17 @@ export default function AccessCheck({}) {
           <label>Camera check</label>
           <input
         type="checkbox"
-        checked={cameraInput} // Bind the checkbox state to cameraInput
-        onChange={(e) => setCameraInput(e.target.checked)} // Update cameraInput when checkbox is toggled
+        checked={cameraInput} 
+        onChange={(e) => setCameraInput(e.target.checked)}
+      />
+        </div>
+
+        <div>
+          <label>Audio check</label>
+          <input
+        type="checkbox"
+        checked={audioInput} 
+        onChange={(e) => setAudioInput(e.target.checked)}
       />
         </div>
       </div>
