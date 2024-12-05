@@ -17,6 +17,10 @@ export default function InstructionDetails() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter()
 
+
+
+
+
   async function getMedia(constraints: ConstrainValue) {
     let stream = null;
 
@@ -30,10 +34,15 @@ export default function InstructionDetails() {
     }
   }
 
+  
+
   useEffect(() => {
-    getMedia({
-      video: { width: 1280, height: 720 },
-    });
+    if(typeof window !=="undefined"){
+      getMedia({
+        video: { width: 1280, height: 720 },
+      });
+    }
+   
   }, []);
 
   return (
@@ -42,6 +51,8 @@ export default function InstructionDetails() {
 
         <div className=" w-[80%] flex justify-between">
           <h1 className="font-bold text-2xl">Trainee Interview</h1>
+
+     
 
         <div className="flex gap-4 ">
           <div className="flex gap-2 items-center border-gray-700 border-[1px] rounded-md py-2 px-3">

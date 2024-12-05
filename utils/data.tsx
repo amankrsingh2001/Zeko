@@ -18,4 +18,23 @@ export const InstructionData = [
 ]
     
 
+export const QuestionsSection = [
+    {
+        question1:"Hey my name is ayesha, How are you doing"
+    },
+    {
+        question1:"Hey my name is Priyans, How are you doing"
+    },
+    {
+        question1:"Hey my name is Ramesh, How are you doing"
+    },
+    {
+        question1:"Hey my name is Suresh, How are you doing"
+    },
+    {
+        question1:"Hey my name is Jayesh, How are you doing"
+    }
+
+
+]
        
