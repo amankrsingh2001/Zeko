@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 
 
-export default function () {
+export default function Interview() {
     const router = useRouter()
     
   return (

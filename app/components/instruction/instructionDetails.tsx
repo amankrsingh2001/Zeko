@@ -30,7 +30,7 @@ export default function InstructionDetails() {
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.log(err);
     }
   }
