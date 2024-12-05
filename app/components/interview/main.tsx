@@ -11,6 +11,8 @@ interface ConstrainValue {
 export default function Main(){
     const [currentQuestion, setCurrentQuestion ] = useState(0)
     const [textContent, setTextContent] = useState(QuestionsSection[currentQuestion].question1)
+    const [secondTime, setSecondTime] = useState(60)
+
 
     const videoRef = useRef<HTMLVideoElement>(null);
     const router = useRouter()
@@ -21,6 +23,22 @@ export default function Main(){
             setTextContent(QuestionsSection[currentQuestion+1].question1)
           }
     }
+
+    const submitHandler = () =>{
+      router.push('/submit')
+    }
+let timer:any;
+
+  useEffect(()=>{
+    timer = setInterval(()=>{
+      setSecondTime((prevSecondTime) => Math.max(prevSecondTime - 1, 0)); 
+    },1000)
+
+    return () =>{
+      clearInterval(timer)
+    }
+  },[textContent])
+ 
 
 
   
@@ -44,15 +62,18 @@ export default function Main(){
 
         useEffect(()=>{
             speekClick()
+            setSecondTime(60)
+            
         },[textContent])
   
     useEffect(() => {
-    // Ensure this runs only on the client
     if (typeof window !== "undefined") {
         getMedia({
           video: { width: 1280, height: 720 },
         });
     }}, []);
+
+
 
     return <div className="w-full h-full flex justify-center items-center flex-col text-white gap-8">
             <div>
@@ -60,6 +81,13 @@ export default function Main(){
             </div>
         <div>
             <p className="text-white text-md">{QuestionsSection[currentQuestion].question1}</p>
+        </div>
+
+        <div className="flex gap-4">
+          <p className="font-bold">Timer :</p>
+         <p>
+         {"00 : " + (secondTime<10? "0"+ secondTime: secondTime)}
+          </p> 
         </div>
           <div className="flex flex-col ">
             <video
@@ -70,7 +98,14 @@ export default function Main(){
               className="shadow-xl rounded-md"
             ></video>
         </div>
-      
-            <button className="bg-[#6C60F3] text-white font-bold py-2 px-4 rounded-md" onClick={nextClickHandler}>Save & Next</button>
+        {
+
+          currentQuestion+1 !==  QuestionsSection.length && <button className="bg-[#6C60F3] text-white font-bold py-2 px-4 rounded-md" onClick={nextClickHandler}>Save & Next</button>
+
+        }
+            {
+              
+              currentQuestion+1 === QuestionsSection.length && <button className="bg-[#6C60F3] text-white font-bold py-2 px-4 rounded-md" onClick={submitHandler}>Submit your answer</button>
+            }
     </div>
 }

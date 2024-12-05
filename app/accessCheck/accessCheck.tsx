@@ -150,8 +150,8 @@ export default function AccessCheck() {
                 ref={videoRef}
                 autoPlay
                 width="600"
-                height="600"
-                className="shadow-xl rounded-md border-2 border-black "
+                height="800"
+                className="shadow-xl rounded-md "
               ></video>
             </div>
           </div>
@@ -211,9 +211,11 @@ export default function AccessCheck() {
               />
             </div>
 
-            <button onClick={()=>{
+            <button   disabled={!screenShareCheck}
+             onClick={()=>{
               router.push('/interviewInstructions')
-            }} className="bg-[#6C60F3] py-3 mt-6 w-full rounded-md font-bold">
+            
+            }} className={`bg-[#6C60F3] py-3 mt-6 w-full rounded-md font-bold }`}>
               Start Interview
             </button>
           </div>
