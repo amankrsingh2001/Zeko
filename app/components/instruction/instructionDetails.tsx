@@ -10,10 +10,11 @@ import { FaRegClock } from "react-icons/fa";
 
 
 interface ConstrainValue {
-  video: any;
+  video:  MediaTrackConstraints | boolean;
 }
 
 export default function InstructionDetails() {
+  
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter()
 

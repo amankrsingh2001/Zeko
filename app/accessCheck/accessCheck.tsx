@@ -53,7 +53,7 @@ export default function AccessCheck() {
         setCameraInput(true);
         getMediaAudio({ audio: true });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.log(err);
     }
   }
@@ -81,7 +81,7 @@ export default function AccessCheck() {
         setAudioInput(true);
       
       }
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
     }
   }

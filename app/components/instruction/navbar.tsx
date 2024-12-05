@@ -5,7 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import Dropdown from "./dropdown";
 import { useState } from "react";
 
-export default function () {
+export default function Navbar() {
   const [showDropDown, setShowDropDown] = useState(false);
 
   const dropDrownHandler = () => {
