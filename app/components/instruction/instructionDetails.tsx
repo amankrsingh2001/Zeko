@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { InstructionData } from "@/utils/data";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsBank2 } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { FaRegClock } from "react-icons/fa";
@@ -14,6 +14,7 @@ interface ConstrainValue {
 }
 
 export default function InstructionDetails() {
+  const [buttonDisable, setButtonDisable] = useState(true)
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter()
@@ -29,6 +30,7 @@ export default function InstructionDetails() {
       stream = await navigator.mediaDevices.getUserMedia(constraints);
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        setButtonDisable(false)
       }
     } catch (err: unknown) {
       console.log(err);
@@ -112,7 +114,9 @@ export default function InstructionDetails() {
               </p>
             </div>
 
-            <button className="bg-[#6C60F3] py-3 mt-6 w-full rounded-md font-bold" onClick={()=>{
+            <button 
+              disabled={buttonDisable}
+            className="bg-[#665cdc] py-3 mt-6 w-full cursor-pointer rounded-md font-bold disabled:cursor-not-allowed disabled:bg-[#a19aec]" onClick={()=>{
               router.push('/accessCheck')
             }}>
               Start Now
