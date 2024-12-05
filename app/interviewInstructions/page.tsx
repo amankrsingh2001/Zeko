@@ -12,8 +12,8 @@ export default function Interview() {
           Interview Instructions
         </h1>
         <p className="text-sm text-center">
-          You're in a proctored test environment. If caught in any suspicious
-          behaviour, you will be marked{" "}
+             You&apos;re in a proctored test environment. If caught in any suspicious
+             behaviour, you will be marked{" "}
           <span className="text-red-500">FAIL.</span>{" "}
         </p>
 
