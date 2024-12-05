@@ -14,7 +14,7 @@ interface ConstrainValue {
 }
 
 export default function InstructionDetails() {
-  
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter()
 
@@ -84,7 +84,7 @@ export default function InstructionDetails() {
           <div className=" w-full max-w-xl flex flex-col  items-start gap-4 px-4">
             <h1 className="font-extrabold font-sans text-xl">Instruction</h1>
             <div className="flex flex-col gap-3 font-serif">
-              {InstructionData.map((instruction, key) => {
+              {InstructionData.map((instruction) => {
                 return (
                   <div
                     className="flex gap-4 font-sans text-md"

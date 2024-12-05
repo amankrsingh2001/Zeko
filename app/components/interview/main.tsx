@@ -1,12 +1,14 @@
-'use strict'
+'use client'
 
 import { QuestionsSection } from "@/utils/data";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 interface ConstrainValue {
-    video: any;
+      video:  MediaTrackConstraints | boolean;
   }
+
+
 
 export default function Main(){
     const [currentQuestion, setCurrentQuestion ] = useState(0)
@@ -27,14 +29,14 @@ export default function Main(){
     const submitHandler = () =>{
       router.push('/submit')
     }
-let timer:any;
+let timer:number;
 
   useEffect(()=>{
     const mounted = true;
     if(mounted){
       timer = setInterval(()=>{
         setSecondTime((prevSecondTime) => Math.max(prevSecondTime - 1, 0)); 
-      },1000)
+      },1000) as unknown as number;
     }
 
 
@@ -54,8 +56,8 @@ let timer:any;
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
-      } catch (err: any) {
-
+      } catch (err: unknown) {
+        console.log(err)
       }
     }
 
