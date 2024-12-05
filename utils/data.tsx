@@ -23,16 +23,16 @@ export const QuestionsSection = [
         question1:"Hey my name is ayesha, How are you doing"
     },
     {
-        question1:"Hey my name is Priyans, How are you doing"
+        question1:"What is Next.js, and how is it different from React?"
     },
     {
-        question1:"Hey my name is Ramesh, How are you doing"
+        question1:"What are the advantages of using Next.js over React?"
     },
     {
-        question1:"Hey my name is Suresh, How are you doing"
+        question1:"How do you create a new Next.js application?"
     },
     {
-        question1:"Hey my name is Jayesh, How are you doing"
+        question1:"What is static site generation, and how does it differ from server-side rendering"
     }
 
 

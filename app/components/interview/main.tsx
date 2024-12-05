@@ -30,9 +30,13 @@ export default function Main(){
 let timer:any;
 
   useEffect(()=>{
-    timer = setInterval(()=>{
-      setSecondTime((prevSecondTime) => Math.max(prevSecondTime - 1, 0)); 
-    },1000)
+    const mounted = true;
+    if(mounted){
+      timer = setInterval(()=>{
+        setSecondTime((prevSecondTime) => Math.max(prevSecondTime - 1, 0)); 
+      },1000)
+    }
+
 
     return () =>{
       clearInterval(timer)
@@ -51,7 +55,7 @@ let timer:any;
           videoRef.current.srcObject = stream;
         }
       } catch (err: any) {
-        console.log(err);
+
       }
     }
 
@@ -63,7 +67,7 @@ let timer:any;
         useEffect(()=>{
             speekClick()
             setSecondTime(60)
-            
+
         },[textContent])
   
     useEffect(() => {
