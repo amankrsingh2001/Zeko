@@ -63,7 +63,7 @@ export default function AccessCheck() {
     if(speakerChecked){
       playAudio();
     }
-  },[speakerChecked])
+  },[audioInput])
 
   async function getMediaAudio(constraints: AudioConstrainValue) {
     let stream = null;
@@ -79,6 +79,7 @@ export default function AccessCheck() {
       audioElement.play();
       if (audioElement) {
         setAudioInput(true);
+        playAudio()
       
       }
     } catch (err) {
